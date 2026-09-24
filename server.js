@@ -5,7 +5,9 @@ import RunwayML from "@runwayml/sdk";
 dotenv.config();
 const app = express();
 app.use(express.json({limit:"1mb"}));
-app.use(express.static("public"));
+app.get("/", (req, res) => {
+  res.sendFile(process.cwd() + "/index.html");
+});
 
 if (!process.env.RUNWAYML_API_SECRET) {
   console.warn("RUNWAYML_API_SECRET não configurada.");
